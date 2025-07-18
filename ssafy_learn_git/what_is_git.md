@@ -230,7 +230,94 @@ ex)
 - 근데 이미 git의 관리를 받은 이력이 있는 파일이나 디렉토리는 나중에 gitignore에 작성해도 적용되지 않음
   (`git rm --cached` 명령어를 통해 git 캐시에서 삭제 필요) 
 
-##### gitignore 목록 생성 서비스
+
+
+##### git revert
+
+`git revert <commit id>`
+
+- "재설정"
+
+- 단일 commit 변경 사항을 안전하게 실행 취소할 수 있도록 도와주는 순방향 실행 취소 작업
+
+- 프로젝트 기록에서 commit을 없었던 일로 처리 후 그 결과를 새로운 commit으로 추가함
+
+- git에서 기록이 손실되는 것을 방지하며 기록의 무결성과 협업의 신뢰성을 높임
+
+- 협업 중에서는 다른 사람들과 commit 개수가 일정해야하기 때문에 과거의 commit을 실행 취소하면 발생할 일의 결과를 새로운 commit으로 추가하면서 convert가 작동함
+  
+  > 기록에서 commit이 사라지지 않음. 결국 commit의 개수는 증가함. 취소한 결과의 commit이 생기는 것. 충돌이 발생하지 않게 하기 위함.
+
+- 추가 명령어
+  
+  ```git
+  git revert id1 id2 id3 >> 여러 commit 실행 취소
+  git revert 1d1..id3 >> 범위지정해서 한꺼번에 실행 취소
+  git revert --no-edit id1 >> 편집기 열지 않고 자동 revert
+  git revert --no-commit id1 >> 자동으로 commit하지 않고, Staging Area에만 올림. 직접commit 해야함. 여러 commit을 revert할 때 하나의 commit으로 묶는 것이 가능
+  ```
+
+
+
+##### git reset
+
+`git reset [옵션] <commit id>`
+
+- 되돌리기
+
+- 시계를 마치 과거로 돌리는 듯한 행위
+
+- 특정 `<commit id>`으로 되돌아 갔을 때, 되돌아간 commit 이후의 commit은 모두 삭제
+
+##### reset의 3가지 옵션
+
+- `--soft`, `--mixed`, `--hard`
+
+- reset은 과거 commit으로 되돌아간 후 되돌아간 commit이후 commit들이 삭제됨
+
+- 근데 삭제되는 commit들의 기록을 어떤 영역에 남겨둘 것인지 옵션을 활용해 조정할 수 있음
+
+`--soft` : 삭제된 commit의 기록을 SA에 남김
+
+`--mixed` : 삭제된 coimmit의 기록을 WD에 남김(default)
+
+`--hard` : 삭제된commit의 기록을 남기지 않음
+
+
+
+##### git reflog
+
+- HEAD가 이전에 가리켰던 모든 commit을 보여줌
+
+- reset의 --hard 옵션을 통해 지워진 commit에도 reflog로 조회하여 복구 가능
+
+
+
+##### git restore
+
+- Modified 상태의 파일 되돌리기
+  
+  > Working Directory에서 파일을 수정한 뒤, 파일의 수정사항을 취소하고, 원래 모습대로 되돌리는 작업
+
+- 원래 파일로 덮어 쓰는 원리기 때문에 수정한 내용은 전부 사라짐
+  
+  > git restore를 통해 수정 취소 후에는 해당 내용을 복원할 수 없음!!
+
+##### git rm --cached
+
+- SA에 올라간 파일을 Unstage
+
+- git 저장소에 'commit이 없는 경우'
+
+##### git restore --staged
+
+- SA에 올라간 파일을 Unstage
+
+- git 저장소에 'commit이 존재하는 경우'
+
+
+
+## gitignore 목록 생성 서비스
 
 - 운영체제, 프레임웤, 프로그래밍 언어 등 개발 환경에 따라 gitignore 목록을 만들어주는 사이트
 
