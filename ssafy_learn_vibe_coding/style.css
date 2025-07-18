@@ -1,0 +1,178 @@
+/* 다크모드 스타일 */
+body.dark-mode {
+    background: linear-gradient(135deg, #232526 0%, #393e46 100%);
+    color: #f5f6fa;
+    transition: background 0.7s cubic-bezier(0.4,0,0.2,1), color 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+body.dark-mode .chat-container {
+    background: rgba(34, 36, 38, 0.95);
+    border: 2px solid #393e46;
+    box-shadow: 0 8px 32px rgba(34,36,38,0.25), 0 2px 8px rgba(57,62,70,0.15);
+}
+
+body.dark-mode .chat-window {
+    background: linear-gradient(135deg, #232526 0%, #393e46 100%);
+    border: 1.5px solid #232526;
+    color: #f5f6fa;
+}
+
+body.dark-mode .message.user {
+    background: linear-gradient(90deg, #393e46 60%, #232526 100%);
+    color: #f5f6fa;
+    border: 1px solid #393e46;
+}
+
+body.dark-mode .message.bot {
+    background: linear-gradient(90deg, #232526 60%, #393e46 100%);
+    color: #f5f6fa;
+    border: 1px solid #232526;
+}
+
+body.dark-mode #chat-input {
+    background: #232526;
+    color: #f5f6fa;
+    border: 1.5px solid #393e46;
+}
+
+body.dark-mode #chat-input:focus {
+    border: 1.5px solid #FFBE98;
+}
+
+body.dark-mode button {
+    background: linear-gradient(90deg, #393e46 60%, #232526 100%);
+    color: #FFBE98;
+}
+
+body {
+    background: linear-gradient(135deg, #C9B6E4 0%, #6667AB 100%);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background 0.7s cubic-bezier(0.4,0,0.2,1), color 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+
+.chat-container {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(102,103,171,0.18), 0 2px 8px rgba(201,182,228,0.12);
+    width: 370px;
+    max-width: 95vw;
+    padding: 28px 22px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #6667AB;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.chat-container::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #C9B6E4 60%, transparent 100%);
+    opacity: 0.25;
+    z-index: 0;
+}
+
+.chat-container::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #6667AB 60%, transparent 100%);
+    opacity: 0.22;
+    z-index: 0;
+}
+
+
+.chat-window {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 18px;
+    padding: 14px;
+    border: 1.5px solid #C9B6E4;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #F3F0FF 0%, #E6E6FA 100%);
+    min-height: 260px;
+    max-height: 370px;
+    box-shadow: 0 2px 8px rgba(102,103,171,0.08);
+    position: relative;
+    z-index: 1;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px 16px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-break: break-word;
+    font-size: 1.05em;
+    box-shadow: 0 2px 8px rgba(255, 183, 197, 0.08);
+    position: relative;
+}
+
+
+.user {
+    background: linear-gradient(90deg, #6667AB 60%, #C9B6E4 100%);
+    align-self: flex-end;
+    color: #fff;
+    border: 1px solid #6667AB;
+}
+
+.bot {
+    background: linear-gradient(90deg, #C9B6E4 60%, #fff 100%);
+    align-self: flex-start;
+    color: #6667AB;
+    border: 1px solid #C9B6E4;
+}
+
+.chat-form {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+
+#chat-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1.5px solid #6667AB;
+    font-size: 1.05em;
+    background: #F3F0FF;
+    transition: border 0.2s;
+}
+
+#chat-input:focus {
+    border: 1.5px solid #C9B6E4;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(90deg, #6667AB 60%, #C9B6E4 100%);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.05em;
+    box-shadow: 0 2px 8px rgba(102,103,171,0.12);
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #C9B6E4 60%, #6667AB 100%);
+}
