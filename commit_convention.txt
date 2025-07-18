@@ -1,0 +1,85 @@
+# Conventional Commit 규칙 
+
+<type>(optional scope): <commit message>
+
+[optional body]
+
+[optional footer(s)]
+
+------------------------------------------------------------------------------
+
+## 주요 타입 목록 (실무 활용 기준)
+
+- feat:          사용자에게 가치 있는 새로운 기능
+- fix:           버그 수정
+- refactor:      리팩토링 (동작 변화 없음)
+- style:         포맷팅, 세미콜론, 들여쓰기 등 비기능적 수정
+- docs:          문서 수정, README 갱신
+- test:          테스트 코드 추가/수정
+- chore:         기타 변경사항 (빌드 제외, 잡일성)
+- ci:            CI 설정 및 워크플로우 변경
+- build:         빌드 시스템 또는 의존성 관련 변경
+- perf:          성능 개선
+- update:        기존 기능/문서 개선 (미묘한 수정 포함)
+- remove:        코드, 파일, 기능 삭제
+- delete:        remove와 유사 (상황에 따라 구분)
+- change:        주요 변경사항 기록 (단순 업데이트 이상일 때)
+- improve:       품질 향상 (성능, 가독성 등)
+- enhance:       개선/강화 목적의 기능 조정
+- optimize:      코드 최적화
+- rename:        파일/변수명/함수명 변경
+- restructure:   폴더 구조 변경, 프로젝트 재정비
+- split:         파일/기능 분리
+- merge:         파일/기능 병합
+- revert:        이전 커밋 되돌리기
+- rollback:      되돌림(긴급상황 시 rollback 등)
+- move:          파일/모듈 이동
+- copy:          파일 복사
+- duplicate:     기능 또는 파일 복제
+- migrate:       데이터/환경/프레임워크 마이그레이션
+- convert:       포맷/구조 변환 (ex: JSON → YAML)
+- integrate:     외부 시스템/API 통합
+- implement:     주요 기능 구현
+- initialize:    초기 프로젝트 세팅
+- setup:         환경설정, 패키지 구성
+- config:        설정 파일 추가/수정
+- package:       패키지 생성/관리 관련 작업
+- mock:          목 데이터/모듈 추가
+- lint:          린팅 설정 또는 오류 수정
+- format:        코드 스타일 재정렬/일관화
+- typo:          오타 수정
+- comment:       주석 추가/수정
+- license:       라이선스 관련 변경
+- security:      보안 관련 변경
+- deps:          종속성 추가/업데이트/제거
+- hotfix:        프로덕션 급한 수정
+
+------------------------------------------------------------------------------
+
+## 예시
+
+feat(report): 월간 리포트 자동 생성 기능 구현
+
+fix(api): 토큰 만료 시 재발급 오류 해결
+
+remove(auth): 불필요한 인증 로직 제거
+
+update(readme): 프로젝트 실행 방법 보완
+
+refactor(login): 로직 분리 및 중복 제거
+
+style(home): 인덴트와 세미콜론 정리
+
+ci(github): PR 템플릿 자동 등록
+
+revert(ui): 테마 기능 롤백
+
+------------------------------------------------------------------------------
+
+## 작성 요령
+
+1. 첫 줄은 50자 이내로 간결하게 요약
+2. 마침표 없이 소문자로 시작
+3. 본문은 한 줄 띄운 뒤 72자 기준으로 줄바꿈
+4. 관련 이슈는 Footer에 `Closes #123` 또는 `Refs #456`
+
