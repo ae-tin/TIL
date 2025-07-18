@@ -230,8 +230,6 @@ ex)
 - 근데 이미 git의 관리를 받은 이력이 있는 파일이나 디렉토리는 나중에 gitignore에 작성해도 적용되지 않음
   (`git rm --cached` 명령어를 통해 git 캐시에서 삭제 필요) 
 
-
-
 ##### git revert
 
 `git revert <commit id>`
@@ -257,8 +255,6 @@ ex)
   git revert --no-commit id1 >> 자동으로 commit하지 않고, Staging Area에만 올림. 직접commit 해야함. 여러 commit을 revert할 때 하나의 commit으로 묶는 것이 가능
   ```
 
-
-
 ##### git reset
 
 `git reset [옵션] <commit id>`
@@ -283,15 +279,11 @@ ex)
 
 `--hard` : 삭제된commit의 기록을 남기지 않음
 
-
-
 ##### git reflog
 
 - HEAD가 이전에 가리켰던 모든 commit을 보여줌
 
 - reset의 --hard 옵션을 통해 지워진 commit에도 reflog로 조회하여 복구 가능
-
-
 
 ##### git restore
 
@@ -314,8 +306,6 @@ ex)
 - SA에 올라간 파일을 Unstage
 
 - git 저장소에 'commit이 존재하는 경우'
-
-
 
 ## gitignore 목록 생성 서비스
 
