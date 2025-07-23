@@ -20,3 +20,16 @@ print(my_set_1 - my_set_2)  # {1, 2}
 
 # 교집합
 print(my_set_1 & my_set_2)  # {3}
+
+
+
+
+def greet(name: str, age: int) -> str:
+    if type(age) is not int:
+        raise TypeError("age must be an integer")
+    else:
+        return f"Hello, my name is {name} and I'm {age} years old."
+
+
+greet('str' ,'20')
+
