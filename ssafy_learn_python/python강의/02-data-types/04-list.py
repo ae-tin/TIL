@@ -1,7 +1,7 @@
 # 리스트 표현
-# my_list_1 = 
-# my_list_2 = 
-# my_list_3 = 
+my_list_1 = []
+my_list_2 = [1, 'a', 3, 'b', 5]
+my_list_3 = [1, 2, 3, 'Python', ['hello', 'world', '!!!']]
 
 my_list = [1, 'a', 3, 'b', 5]
 
@@ -34,15 +34,3 @@ print(my_list)  # [1, 'two', 3, 4, 5]
 my_list = [1, 2, 3, 4, 5]
 my_list[2:4] = ['three', 'four']
 print(my_list)  # [1, 2, 'three', 'four', 5]
-
-
-
-my_list = [1,2,3,4,]
-print(my_list)  # [1, 2, 3, 4]
-my_list = [
-    1,
-    2,
-    3,
-    4,
-]
-print(my_list)  # [1, 2, 3, 4]

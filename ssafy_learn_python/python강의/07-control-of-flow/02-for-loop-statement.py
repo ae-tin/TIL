@@ -1,4 +1,8 @@
 # for문 기본
+students = ['alice', 'harry', 'bob']
+
+for student in students:
+    print(f'{student} 하이!')
 
 
 # for문 작동 원리

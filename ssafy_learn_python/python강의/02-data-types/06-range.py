@@ -1,7 +1,7 @@
 # range 표현
-# my_range_1 = 
-# my_range_2 = 
-# my_range_3 = 
+my_range_1 = range(5)
+my_range_2 = range(1, 10)
+my_range_3 = range(5, 0 ,-1)
 
 print(my_range_1)  # range(0, 5)
 print(my_range_2)  # range(1, 10)

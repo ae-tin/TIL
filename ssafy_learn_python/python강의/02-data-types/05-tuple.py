@@ -2,7 +2,7 @@
 my_tuple_1 = ()
 my_tuple_2 = (1,)
 my_tuple_3 = (1, 'a', 3, 'b', 5)
-my_tuple_4 = 1, 'hello', 3.14, True  # 괄호 없이도 튜플 생성 가능
+my_tuple_4 = 1, 'hello', 3.14, True
 
 my_tuple = (1, 'a', 3, 'b', 5)
 
