@@ -1,6 +1,6 @@
 # 문자열 메서드 체이닝
 text = 'heLLo, woRld!'
-new_text = text
+new_text = text.swapcase().replace('l', 'z')
 print(new_text)  # HEzzO, WOrLD!
 
 
@@ -13,7 +13,7 @@ step2 = step1.replace('l', 'z')
 print('2단계 결과:', step2)  # HEzzO, WOrLD!
 
 # 2. 한 줄로 실행하기 (위와 동일한 결과)
-new_text = text
+new_text = text.swapcase().replace('l', 'z')
 print('최종 결과:', new_text)  # HEzzO, WOrLD!
 
 

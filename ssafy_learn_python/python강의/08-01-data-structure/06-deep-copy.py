@@ -1,9 +1,9 @@
 # 깊은 복사
-
+import copy
 
 print('깊은 복사 예시')
 a = [1, 2, [3, 4, 5]]
-b = 
+b = copy.deepcopy(a)
 
 b[2][1] = 100
 
@@ -17,7 +17,7 @@ original = {
     'a': [1, 2, 3],
     'b': {'c': 4, 'd': [5, 6]},
 }
-copied = 
+copied = copy.deepcopy(original)
 
 copied['a'][1] = 100
 copied['b']['d'][0] = 500

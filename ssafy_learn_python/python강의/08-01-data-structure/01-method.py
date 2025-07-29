@@ -4,11 +4,11 @@ print(help(str))
 print(help(list))
 
 
-# 함수 호출
 def append():
     pass
 
 
+# 함수 호출
 append()
 
 # 메서드 호출
