@@ -1,10 +1,10 @@
 # add
 my_set = {'a', 'b', 'c', 1, 2, 3}
-my_set.add(4)
+my_set.add('d')
 print(my_set)
 
-my_set.add(4)
-print(my_set)
+# my_set.add('d')
+# print(my_set)
 
 # clear
 # my_set = {'a', 'b', 'c', 1, 2, 3}
@@ -21,6 +21,7 @@ print(my_set)
 # my_set = {'a', 'b', 'c', 1, 2, 3}
 # element = my_set.pop()
 # print(element)
+# print(my_set)
 
 # discard
 # my_set = {'a', 'b', 'c', 1, 2, 3}
