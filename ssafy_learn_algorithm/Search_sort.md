@@ -56,8 +56,6 @@
 
 - ⚠️ **이진 검색을 수행하려면 자료가 정렬된 상태여야 함**
 
-
-
 ### 🔍 검색 과정 (이진 탐색)
 
 1. 자료의 **중앙에 있는 원소**를 고른다.
@@ -69,8 +67,6 @@
 
 4. **찾고자 하는 값을 찾을 때까지** ①~③의 과정을 **반복**한다.
 
-
-
 ### 💡 이진 검색 알고리즘
 
 #### 🔧 구현
@@ -81,14 +77,12 @@
   데이터에 **삽입이나 삭제**가 발생할 경우  
   배열의 정렬 상태를 **항상 유지해야 하므로 추가 작업이 필요**하다.
 
-
-
 ```python
 def binarySearch(a, N, key):
     # key를 찾으면 인덱스 반환, 실패하면 -1 반환
     start = 0
     end = N - 1
-    
+
     while start <= end:
         middle = (start + end) // 2
         if a[middle] == key:         # 검색 성공
@@ -99,10 +93,7 @@ def binarySearch(a, N, key):
             start = middle + 1
 
     return -1  # 검색 실패
-
 ```
-
-
 
 ### 🔁 재귀 함수 이용 이진 검색
 
@@ -122,7 +113,6 @@ def binarySearch2(a, low, high, key):
             return binarySearch2(a, low, middle - 1, key)
         elif a[middle] < key:      # 오른쪽 구간 탐색
             return binarySearch2(a, middle + 1, high, key)
-
 ```
 
 ---
@@ -154,8 +144,6 @@ def binarySearch2(a, low, high, key):
 - O(n2)  
   (모든 원소에 대해 최소값 탐색이 필요하기 때문)
 
-
-
 ```python
 def selection_sort(a, N):
     for i in range(N - 1):               # 정렬 구간의 시작 인덱스
@@ -164,10 +152,7 @@ def selection_sort(a, N):
             if a[min_idx] > a[j]:        # 더 작은 값 발견 시 최소값 위치 갱신
                 min_idx = j
         a[i], a[min_idx] = a[min_idx], a[i]  # 최소값을 구간 맨 앞으로 이동
-
 ```
-
-
 
 ### 셀렉션 알고리즘
 
@@ -179,8 +164,6 @@ def selection_sort(a, N):
 - 셀렉션은 아래와 같은 과정을 통해 이루어진다.
   - 정렬 알고리즘을 이용하여 자료 정렬하기
   - 원하는 순서에 있는 원소 가져오기
-
-
 
 ### k번째로 작은 원소를 찾는 알고리즘
 
@@ -198,8 +181,6 @@ def select(arr, k):
     return arr[k - 1]
 ```
 
-
-
 ### 효율한 정렬 알고리즘의 특성을 다른 정렬들과 비교해보자.
 
 | 알고리즘       | 평균 수행시간    | 최악 수행시간    | 알고리즘 기법 | 비고                             |
@@ -211,11 +192,202 @@ def select(arr, k):
 | 삽입 정렬      | O(n²)      | O(n²)      | 비교와 교환  | n의 개수가 작을 때 효과적이다              |
 | 병합 정렬      | O(n log n) | O(n log n) | 분할 정복   | 연결리스트의 경우 가장 효율적인 방식이다         |
 
+# Sort()를 쓰는게 더 좋지 않을까?
+
+> Sort()는 Hybrid Sort,,! 대부분의 경우에서 다른 정렬방법들 보다 효율적이지만 우리는 기본기를 배우는 것!! 
+
+## 병합 정렬
+
+> 자료를 최소 단위의 문제까지 나눈 후에 차례대로 정렬하여 최종 결과를 얻어냄
+> 
+> Top-down 방식
+> 
+> 시간 복잡도 - O(nlogn)
 
 
 
+```python
+def merge(left, right):
+    result = [0] * (len(left) + len(right))
+    l = r = 0 #index
+    
+    while l < len(left) and r < len(right):
+        if left[l] < right[r]:
+            result[l+r] = left[l]
+            l += 1
+        else:
+            result[l+r] = right[r]
+            r += 1
 
 
+def merge_sort(lst):
+    if len(lst) == 1:
+        return lst
+
+    mid = len(lst)//2
+    left = lst[:mid]
+    right = lst[mid:]
+
+    left_list = merge_sort(left)
+    right_list = merge_sort(right)
+
+    merge_list = merge(left_list, right_list)
+    return merge_list
+```
+
+
+
+## 퀵 정렬
+
+
+
+- Partitioning
+  
+  1. 작업 영역을 정한다.
+  
+  2.  작업 영역 중 가장 왼쪽에 있는 수를 pivot이라고 하자 ( pivot을 기준으로 해석한다)
+  
+  3.  pivot을 기준으로 배치 종료
+     
+     1.    왼쪽에는 pivot보다 작은 수를 배치한다 (정렬안됨)
+     
+     2.  오른쪽에는 pivot보다 큰 수를 배치한다 (정렬안됨)
+
+- 한 번의 파티셔닝 이후, 왼쪽과 오른쪽 부분 배열에 대해 재귀적으로 파티셔닝을 반복하여 정렬을 진행한다
+
+- pivot은 fix 시키면 결국 재귀가 끝났을 때 모든 원소가 pivot이 되어 fix될 것
+
+
+
+## Pivot선택 전략
+
+## Hoare-partitioning
+
+- 왼쪽 끝/ 오른쪽 끝/ 가운데 세 값 중에 중간 값을 선택하는 경우
+
+
+
+```python
+## quick_sort_hoare_partitioning.py
+arr = [3, 2, 4, 6, 9, 1, 8, 7, 5]
+# arr = [11, 45, 23, 81, 28, 34]
+# arr = [11, 45, 22, 81, 23, 34, 99, 22, 17, 8]
+# arr = [1, 1, 1, 1, 1, 0, 0, 0, 0, 0]
+
+
+# 피벗: 제일 왼쪽 요소
+# 이미 정렬된 배열이나 역순으로 정렬된 배열에서 최악의 성능을 보일 수 있음
+def hoare_partition1(left, right):
+    pivot = arr[left]  # 피벗을 제일 왼쪽 요소로 설정
+    i = left + 1
+    j = right
+
+    while i <= j:
+        while i <= j and arr[i] <= pivot:
+            i += 1
+
+        while i <= j and arr[j] >= pivot:
+            j -= 1
+
+        if i < j:
+            arr[i], arr[j] = arr[j], arr[i]
+
+    arr[left], arr[j] = arr[j], arr[left]
+    return j
+
+
+# 피벗: 제일 오른쪽 요소
+# 이미 정렬된 배열이나 역순으로 정렬된 배열에서 최악의 성능을 보일 수 있음
+def hoare_partition2(left, right):
+    pivot = arr[right]  # 피벗을 제일 오른쪽 요소로 설정
+    i = left
+    j = right - 1
+
+    while i <= j:
+        while i <= j and arr[i] <= pivot:
+            i += 1
+        while i <= j and arr[j] >= pivot:
+            j -= 1
+        if i < j:
+            arr[i], arr[j] = arr[j], arr[i]
+
+    arr[i], arr[right] = arr[right], arr[i]
+    return i
+
+
+# 피벗: 중간 요소로 설정
+# 일반적으로 더 균형 잡힌 분할이 가능하며, 퀵 정렬의 성능을 최적화할 수 있습니다.
+def hoare_partition3(left, right):
+    mid = (left + right) // 2
+    pivot = arr[mid]  # 피벗을 중간 요소로 설정
+    arr[left], arr[mid] = arr[mid], arr[left]  # 중간 요소를 왼쪽으로 이동 (필요 시)
+    i = left + 1
+    j = right
+
+    while i <= j:
+        while i <= j and arr[i] <= pivot:
+            i += 1
+        while i <= j and arr[j] >= pivot:
+            j -= 1
+        if i < j:
+            arr[i], arr[j] = arr[j], arr[i]
+
+    arr[left], arr[j] = arr[j], arr[left]
+    return j
+
+
+def quick_sort(left, right):
+    if left < right:
+        pivot = hoare_partition1(left, right)
+        # pivot = hoare_partition2(left, right)
+        # pivot = hoare_partition3(left, right)
+        quick_sort(left, pivot - 1)
+        quick_sort(pivot + 1, right)
+
+
+quick_sort(0, len(arr) - 1)
+print(arr)
+
+```
+
+
+
+```python
+## quick_sort_lomuto.py
+arr = [3, 2, 4, 6, 9, 1, 8, 7, 5]
+
+def lomuto_partition(left, right):
+    pivot = arr[right]
+
+    i = left - 1
+    for j in range(left, right):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+
+    arr[i + 1], arr[right] = arr[right], arr[i + 1]
+    return i + 1
+
+
+def quick_sort(left, right):
+    if left < right:
+        pivot = lomuto_partition(left, right)
+        quick_sort(left, pivot - 1)
+        quick_sort(pivot + 1, right)
+
+
+quick_sort(0, len(arr) - 1)
+print(arr)
+
+```
+
+> d 퀵 정렬은 평균이 nlogn, 최악은 n^2,
+> 
+> 데이터가 많을 수록 유리!!
+
+
+
+## Parametric Search, Lower/Upper bound 를 이진 탐색과 같이 찾아보기!!!
 
 
 
