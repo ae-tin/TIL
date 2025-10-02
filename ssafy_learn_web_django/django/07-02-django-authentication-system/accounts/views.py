@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
+# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login
-
+from django.contrib.auth import logout as auth_logout
+from .forms import CustomUserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('articles:index')
     """
     사용자 로그인을 처리하는 뷰 함수
     GET: 로그인 폼을 보여줌
@@ -41,3 +46,44 @@ def login(request):
     # - GET 요청: 빈 로그인 폼 표시
     # - POST 요청 실패: 에러 메시지와 함께 폼 다시 표시
     return render(request, 'accounts/login.html', context)
+
+
+@login_required
+def logout(request):
+    # 누가 로그아웃하는지 유저를 조회해야 하는가?"
+    # >> 요청 객체(request)에 이미 유저 정보가 담겨있어서 db조회를 할 필요는 없다
+    # Article.objects.get(pk=pk)
+    # 해당 유저를 삭제
+    # request.user.delete()
+
+    # 해당 유저의 세션을 삭제
+    auth_logout(request)
+
+    return redirect('articles:index')
+
+
+
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect('articles:index')
+
+
+    if request.method == 'POST':
+        # 사용자 입력 데이터를 받기(UserCreationForm을 통해서)
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = CustomUserCreationForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'accounts/signup.html', context)
+
+@login_required
+def delete(request):
+    # 누구를 탈퇴하는지에 대한 조회는 필요없다
+    # 해당 유저 객체를 삭제
+    request.user.delete()
+    return redirect('articles:index')

@@ -270,10 +270,6 @@ admin.site.register(User, UserAdmin)
 
 - User model  대체 작업은 프로젝트의 모든 migrations 혹은 첫 migrate를 실행하기 전에 이 작업을 마쳐야 함
 
-
-
-
-
 ## Login (CRUD 중 Create)
 
 - 클라이언트와 서버 간의 상태 정보를 유지하기 위해서 쿠키와 세션을 사용
@@ -307,8 +303,6 @@ admin.site.register(User, UserAdmin)
 - CSRF 공격을 방지하기 위해 csrf_token 작성
 
 - 서버로부터 전달받은 AuthenticationForm을 화면에 출력
-
-
 
 ## Template with Authentication data
 
@@ -378,8 +372,6 @@ admin.site.register(User, UserAdmin)
   
   - django는 우리가 session 메커니즘(복잡한 동작원리)에 대부분을 생각하지 않게끔 많은 도움을 줌
 
-
-
 ## User 모델 대체하기 Tip
 
 - User model을 대체하는 순서를 숙지하기 어려울 경우 해당 공식문서를 보며 순서대로 진행하는 것을 권장
@@ -387,5 +379,3 @@ admin.site.register(User, UserAdmin)
 - [Customizing authentication in Django | Django documentation | Django](https://docs.djangoproject.com/en/5.2/topics/auth/customizing/#substituting-a-custom-user-model)
 
 - 에서 substituting a custom user model 참고
-
-

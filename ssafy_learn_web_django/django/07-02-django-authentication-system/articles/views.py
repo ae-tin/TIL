@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Article
 from .forms import ArticleForm
 
@@ -30,7 +31,7 @@ def detail(request, pk):
     # 3. detail.html 템플릿을 렌더링
     return render(request, 'articles/detail.html', context)
 
-
+@login_required
 def create(request):
     """
     GET 요청 시에는 게시글 생성 form 페이지를 렌더링하고,
@@ -60,7 +61,7 @@ def create(request):
     # create.html 템플릿을 렌더링
     return render(request, 'articles/create.html', context)
 
-
+@login_required
 def delete(request, pk):
     """특정 pk를 가진 게시글을 DB에서 삭제"""
     # 1. 삭제할 게시글을 pk를 이용해 조회
@@ -72,7 +73,7 @@ def delete(request, pk):
     # 3. 게시글 삭제 후, 전체 목록 페이지로 이동
     return redirect('articles:index')
 
-
+@login_required
 def update(request, pk):
     """
     GET 요청 시에는 기존 데이터를 담은 수정 form 페이지를 렌더링하고,
