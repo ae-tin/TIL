@@ -4,7 +4,7 @@
 
 ### HTTP 특징
 
-1. 비 연결 지향
+1. 비 연결 지향(Connectionless)
    
    - 서버는 요청에 대한 응답을 보낸 후 연결을 끊음
    
@@ -12,7 +12,7 @@
    
    > 비 연결성!
 
-2. 무상태
+2. 무상태(Stateless)
    
    - 연결을 끊는 순간 통신이 끝나며 상태 정보가 유지되지 않음
    
@@ -303,6 +303,29 @@ admin.site.register(User, UserAdmin)
 - CSRF 공격을 방지하기 위해 csrf_token 작성
 
 - 서버로부터 전달받은 AuthenticationForm을 화면에 출력
+```python
+# accounts/views.py
+
+from Django.shortcuts import render, redirect
+from Django.contrib.auth import login as auth_login
+from Django.contrib.auth.forms import AuthenticationForm
+
+def login(request):
+	if request.method == 'POST':
+		form = AuthenticationForm(request, data = request.POST)
+		
+		if form.is_valid():
+			auth_login(request, form.get_user())
+			return redirect('articles:index')
+	else:
+		form = AuthenticationForm()
+	context = {
+		'form': form,
+	}
+	return render(request, 'accounts/login.html', context)
+
+```
+- 유효성 검사를 통과했을 경우, 로그인한 사용자 객체를 반환
 
 ## Template with Authentication data
 

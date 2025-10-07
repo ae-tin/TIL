@@ -123,10 +123,11 @@
    3. requirements.txt를 공유하여 각자의 가상 환경을 구성
 
 ## Django 설치 및 프로젝트 생성
+`pip install django`
 
 `django-admin startproject firstpjt .`
 
-- firstpjt 라는 이름의 django 프로젝트를 생성
+- firstpjt 라는 이름의 django 프로젝트를 생성 --> 경로 필수(위는 .)
 
 `python manage.py runserver`
 
@@ -241,3 +242,54 @@
 - 요청 - urls.py - views.py - models.py, templates - views.py - 응답
 
 - views.py가 Controller 역할!
+
+### 1. URLs
+
+- url 경로는 반드시 '/'로 끝나야함
+`path('articles/', views.index)`
+
+### 2. View
+
+- render의 html 경로는 default로 'app/templates'임
+- 그 이후로 작성
+`return render(request, articles/index.html)`
+
+## 데이터 흐름에 따른 코드 작성
+
+- URLs -> View -> Templates 순
+
+### Routine
+
+`python -m venv venv`
+`source venv/Scripts/activate`, for mac `source venv/bin/activate`
+`pip install django`
+`pip freeze > requirements.txt`
+`.gitignore` 생성
+`git init` git 저장소 생성
+`django-admin startproject firstpjt .`
+`python manage.py startapp firstapps`
+`settings.py` 에서 app 등록
+`urls.py`를 app에 복사하고 project urls.py에서 app 경로 생성
+`models.py` 정의
+`python manage.py makemigrations`
+`python manage.py migrate`
+- 혹시 db를 초기화 해야하면 migrations 파일들 삭제, db.sqlite3 삭제 후 위 반복
+- `Custom User Model` 대체
+`settings.py`에서 `AUTH_USER_MODEL = 'accounts.User'` 로 대체 해야함
+`accounts/admin.py` 에서 
+```python
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import User
+
+admin.site.register(User, UserAdmin)
+```
+등록을 해줘야함
+- Django에서는 프로젝트 중간에 AUTH_USER_MODEL을 변경하는 것을 강력히 권장하지 않기 때문에 프로젝트 중간에 바꾸려면 db를 초기화 해야함. 초기화 해야하면 migrations 파일들 삭제, db.sqlite3 삭제 후 위 반복
+
+- html form tag 에서 POST method면 csrf token을 꼭 생성!
+
+
+
+
+

@@ -18,7 +18,7 @@
 
 ## Model Field
 
-> DB 테이블의 필드(열) 정의 데이터 타입 및 제야 조건 명시
+> DB 테이블의 필드(열) 정의 데이터 타입 및 제약 조건 명시
 
 ### Field Types
 
@@ -120,6 +120,11 @@ $ python manage.py migrate
 2. makemigrations
 
 3. migrate
+
+## 데이터베이스 초기화 방법
+1. Migrations 파일 삭제
+2. db.sqlite3 파일 삭제
+
 
 ## Admin site
 

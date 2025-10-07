@@ -8,7 +8,7 @@
 
 ## HTML의 콘텐츠를 변수 값에 따라 변경하기
 
-- view.py에 
+- view.py에 `return render(request, 'articles/index.html', context)` context를 삽입하면 html 에서 `{{ context의 key }}` 와 같이 변수로 사용할 수 있음
 
 ## Djang Template Language(DTL)
 
@@ -22,6 +22,7 @@
    - 해당 dict key에 해당하는 문자열이 template에서 사용 가능한 변수명이됨
    
    - dot을 사용하여 변수 속성에 접근할 수 있음
+	- context가 이중 dict라면 variable1.attribute 등으로 내부 접근 가능
 
 2. Filters
    
@@ -30,6 +31,7 @@
    - chained이 가능하며 일부 필터는 인자를 받기도함
    
    - 약 60개의 built in template filter를 제공
+	- `{{ picked }}` 메뉴는 `{{ picked|length }}` 글자입니다.
 
 3. Tags
    
@@ -44,6 +46,8 @@
    - `{% for num in nums %} {% endfor %}`
 
 4. Comments
+- 주석, `{# name #}` -> inline
+- {% comment %} .. {% endcomment %} -> multiline
 
 ## 템플릿 상속
 
@@ -64,6 +68,10 @@
   - extends 태그로 상속받을 템플릿 결정
   
   - block 태그를 활용해 base.html 같은 이름으로 작성된 block 태그의 내용을 대체
+
+### 상속 관련 DTL tags
+`{% extends 'articles/base.html' %}` -> 반드시 템플릿 최상단. extends는 2개 이상 사용 불가
+`{% block 'content' %} {% endblock 'content' %}` -> 하위 템플릿에서 재정의 할 수 있는 블록을 정의
 
 ## form 태그
 
@@ -90,6 +98,7 @@
     - input 요소의 핵심
     
     - 사용자가 입력한 데이터에 붙이는 이름(key)
+	- 데이터를 제출했을 때 서버는 name 속성에 설정된 값을 통해서만 사용자가 입력한 데이터에 접근할 수 있음
     
     - http:// dd.com/path?key=value?key=value ....
       
@@ -100,6 +109,10 @@
 # Varible Routing
 
 `<path_converter:variable_name>`
+`path('articles/<int:name>', views.detail)` 이면 요청 url이 /articles/10/ 일 때, views.detail(request, num=10)의 형태로 호출 됨
+
+### in views.py
+`def detail(request, name)` 으로 variable을 인자로 받아줘야함
 
 # App URL 정의
 
@@ -109,10 +122,18 @@
 
 - 각 앱의 urls.py 에서 각자의 URL 관리
 
-#### include('app.urls')
+#### include('app.urls') in project urls.py
 
 `path('주소', include('app.urls')`
+`path('articles/', include('articles.urls'))`
+> 각 앱에서 urls.py를 만들고 꼭 app_name = 'app_name'을 추가해줘야함
 
 > path가 너무 늘어나면,,?
 > 
 > `path('주소', view함수, name='관리할 이름')`
+
+> 나중에 html에서 a tag나 action에서 url tag를 사용해서 `{% url 'app_name:관리할 이름' %}`으로 접근가능
+
+### url tag
+`{% url 'app_name:관리할 이름' arg1 arg2 %}`
+- arg1, arg2 는 url패턴에 변수가 포함 돼있을 때 추가
