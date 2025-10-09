@@ -28,6 +28,33 @@ class ArticleForm(forms.Form):
     content = forms.CharField()
 ```
 
+```python
+# articles/views.py
+
+from .forms import ArticleForm
+from django.shortcuts import render
+
+def new(request):
+    form = ArticleForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'articles/new.html', context)
+
+```
+
+
+```html
+<!-- articles/new.html -->
+
+<h1>NEW</h1>
+<form action="{% url 'articles:create' %}" method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit">
+</form>
+
+```
 > Models에서는 content를 textfield로 작성했는데 왜지?
 > 
 > > forms에는 textfield가 존재하지 않음
@@ -52,11 +79,99 @@ class ArticleForm(forms.Form):
 
 - widgets은 단순히 input요소의 속성 및 출력되는 부분을 변경하는 것
 
+```python
+# articles/forms.py
+
+from django import forms
+
+class ArticleForm(forms.Form):
+    title = forms.CharField(max_length=10)
+    content = forms.CharField(widget=forms.Textarea)
+```
+
 ## Form vs. ModelForm
 
 ##### Form : 사용자 입력 데이터를 DB에 저장하지 않을 때(검색, 로그인 등)
 
 ##### ModelForm : 사용자 입력 데이터를 DB에 저장해야 할 때(게시글 작성, 회원가입)
+- Model과 연결된 Form을 자동으로 생성해주는 기능을 제공
+- Form클래스와 Model클래스를 결합한 형태로, 모델 필드를 기반으로 입력 폼을 자동 생성해준다
+- 데이터 수집과 저장 과정을 동시에 처리할 수 있도록 도와준다
+
+```python
+# articles/forms.py
+
+from django import forms
+from .models import Article
+
+class ArticleForm(forms.ModelForm):
+	class Meta:
+	    model = Article
+    	fields = '__all__'
+```
+##### Meta class
+- ModelForm의 정보를 작성하는 곳
+- ModelForm 내부에서 어떤 모델과 연결할지, 어떤 필드를 사용할지 등을 정의하는 설정 공간
+- 폼의 동작 방식을 제어하는 핵심 역할 수행
+- fields로 필드를 지정할 수도, exclude 속성을 사용하여 모델에서 포함하지 않도록 필드를 지정할 수도 있음
+
+```python
+# articles/forms.py
+
+from django import forms
+from .models import Article
+
+class ArticleForm(forms.ModelForm):
+	class Meta:
+	    model = Article
+#    	fields = ('title',)
+		exclude = ('title',)
+```
+
+## ModelForm 적용
+# articles/views.py
+
+- Create
+
+```python
+from django.shortcuts import render, redirect
+from .forms import ArticleForm
+
+def create(request):
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            article = form.save()
+            return redirect('articles:detail', article.pk)
+    else:
+        form = ArticleForm()
+    
+    context = {
+        'form': form,
+    }
+    return render(request, 'articles/new.html', context)
+```
+
+- Update
+
+```python
+from django.shortcuts import render, redirect
+from .forms import ArticleForm
+from .models import Article
+
+def create(request):
+	article = Article.objects.get(pk=pk)
+	form = ArticleForm(request.POST, instance=article)
+    if form.is_valid():
+        form.save()
+        return redirect('articles:detail', article.pk)
+    context = {
+		'article': article,
+        'form': form,
+    }
+    return render(request, 'articles/edit.html', context)
+```
+
 
 ## is_valid() 활용
 
@@ -72,7 +187,7 @@ class ArticleForm(forms.Form):
 
 ### save()
 
-> model form에 instance 인자가 있었냐 없었냐에 따라 생성과 갱신을 구분할 수 있음
+> model form에 `instance 인자`가 있었냐 없었냐에 따라 생성과 갱신을 구분할 수 있음
 > 
 > 없으면 생성, 있으면 갱신
 
@@ -91,3 +206,47 @@ class ArticleForm(forms.Form):
 - 공통점 - 데이터 생성을 구현
 
 - 차이점 - new 는 get method, create는 post method 요청만 처리
+
+```python
+# articles/views.py
+from django.shortcuts import render, redirect
+from .forms import ArticleForm
+
+def create(request):
+    if request.method == 'POST':              # ① POST 요청이면
+        form = ArticleForm(request.POST)      # 사용자가 입력한 데이터로 폼 생성
+        if form.is_valid():                   # 유효성 검사 통과 시
+            article = form.save()             # DB 저장
+            return redirect('articles:detail', article.pk)  # 상세 페이지로 이동
+    else:                                     # ② GET 요청이면
+        form = ArticleForm()                  # 빈 폼 생성
+    
+    # ③ 공통적으로 폼을 context에 담아 렌더링
+    context = {'form': form}
+    return render(request, 'articles/new.html', context)
+```
+
+
+
+#### edit & update view 함수
+```python
+# articles/views.py
+
+def update(request, pk):
+    article = Article.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:detail', article.pk)
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        'article': article,
+        'form': form,
+    }
+    return render(request, 'articles/update.html', context)
+```
+
+
+

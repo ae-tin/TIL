@@ -171,6 +171,16 @@ $ python manage.py migrate
 - admin.py에 작성한 모델 클래스를 등록해야만 admin site에서 확인 가능
 
 - admin site에서 등록 확인. 작성도 가능함
+```python
+# articles/admin.py
+
+from django.contrib import admin
+from .models import Article
+
+admin.site.register(Article)
+``` 
+
+
 
 ### 6. 데이터 생성, 수정, 삭제 테스트
 
