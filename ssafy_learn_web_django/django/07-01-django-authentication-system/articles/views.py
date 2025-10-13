@@ -40,7 +40,6 @@ def create(request):
     # 사용자가 form을 작성하고 '제출' 버튼을 눌렀을 때
     if request.method == 'POST':
         # form 인스턴스를 생성하고, 요청으로 들어온 데이터(request.POST)를 채움
-        # ArticleForm의 부모는 ModelForm(db 저장)
         form = ArticleForm(request.POST)
         # 유효성 검사를 통과했다면
         if form.is_valid():

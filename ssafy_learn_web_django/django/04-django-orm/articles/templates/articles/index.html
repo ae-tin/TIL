@@ -7,12 +7,13 @@
 </head>
 <body>
   <h1>메인 페이지</h1>
-  
-  {% for article in articles %}
-  <p>{{ article.pk }}</p>
-  <p>{{ article.title }}</p>
-  <p>{{ article.content}}</p>
   <hr>
+  {% comment %} 전체 게시글 출력 {% endcomment %}
+  {% for article in articles %}
+    <p>글 번호: {{ article.pk }}</p>
+    <p>글 제목: {{ article.title }}</p>
+    <p>글 내용: {{ article.content }}</p>
+    <hr>
   {% endfor %}
 </body>
 </html>

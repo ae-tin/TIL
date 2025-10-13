@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
-from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 
@@ -29,9 +28,6 @@ def login(request):
             # form.get_user(): 인증된 사용자 객체를 반환
             # auth_login(): Django의 로그인 함수로 세션을 생성하여 로그인 상태 유지
             # - 세션 ID를 쿠키에 저장
-
-
-
             # - 서버의 세션 테이블에 사용자 정보 저장
             auth_login(request, form.get_user())
 
@@ -92,7 +88,6 @@ def delete(request):
     return redirect('articles:index')
 
 
-@login_required
 def update(request):
     if request.method == 'POST':
         form = CustomUserChangeForm(request.POST, instance=request.user)
@@ -100,22 +95,25 @@ def update(request):
             form.save()
             return redirect('articles:index')
     else:
-        form = CustomUserChangeForm(instance = request.user)
+        form = CustomUserChangeForm(instance=request.user)
     context = {
-        'form':form,
+        'form': form,
     }
     return render(request, 'accounts/update.html', context)
+
 
 def password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
+        # form = PasswordChangeForm(request.user, data=request.POST)
         if form.is_valid():
             user = form.save()
+            # 세션 무효화 방지
             update_session_auth_hash(request, user)
             return redirect('articles:index')
     else:
         form = PasswordChangeForm(request.user)
     context = {
-        'form':form,
+        'form': form,
     }
     return render(request, 'accounts/password.html', context)

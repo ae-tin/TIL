@@ -14,7 +14,5 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
-        # fields가 문제!
         model = get_user_model()
-        fields = ('first_name','last_name','email',)
-        
+        fields = ('email', 'first_name', 'last_name',)

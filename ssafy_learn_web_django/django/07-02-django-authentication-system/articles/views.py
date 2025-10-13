@@ -31,6 +31,7 @@ def detail(request, pk):
     # 3. detail.html 템플릿을 렌더링
     return render(request, 'articles/detail.html', context)
 
+
 @login_required
 def create(request):
     """
@@ -61,6 +62,7 @@ def create(request):
     # create.html 템플릿을 렌더링
     return render(request, 'articles/create.html', context)
 
+
 @login_required
 def delete(request, pk):
     """특정 pk를 가진 게시글을 DB에서 삭제"""
@@ -72,6 +74,7 @@ def delete(request, pk):
 
     # 3. 게시글 삭제 후, 전체 목록 페이지로 이동
     return redirect('articles:index')
+
 
 @login_required
 def update(request, pk):

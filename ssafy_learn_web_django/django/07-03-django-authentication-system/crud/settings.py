@@ -125,4 +125,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # django의 기본 유저 모델을 설정(대체)
 AUTH_USER_MODEL = 'accounts.User'
+
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

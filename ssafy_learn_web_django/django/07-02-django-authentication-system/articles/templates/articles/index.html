@@ -9,31 +9,22 @@
   <h3>Hello, {{ user.username }}</h3>
 
   <h1>메인 페이지</h1>
-  
-  {% if request.user.is_authenticated %}
-  <form action=" {% url "accounts:logout" %} " method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Logout">
-  </form>
-  <form action=" {% url "accounts:delete" %} " method="POST">
-    {% csrf_token %}
-    <input type="submit" value="회원탈퇴">
-  </form>
 
-
-  <a href="{% url "articles:create" %}">CREATE</a>
-
+  {% if request.user.is_authenticated  %}
+  {% comment %} {% if user.is_authenticated %} {% endcomment %}
+    <form action="{% url "accounts:logout" %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Logout">
+    </form>
+    <form action="{% url "accounts:delete" %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="회원탈퇴">
+    </form>
+    <a href="{% url "articles:create" %}">CREATE</a>
   {% else %}
-  
-  <a href="{% url "accounts:login" %}">Login</a>
-
-  <a href="{% url "accounts:signup" %}">회원가입</a>
+    <a href="{% url "accounts:login" %}">Login</a>
+    <a href="{% url "accounts:signup" %}">회원가입</a>
   {% endif %}
-
-
-
-
-
 
   <hr>
   {% comment %} 전체 게시글 출력 {% endcomment %}
