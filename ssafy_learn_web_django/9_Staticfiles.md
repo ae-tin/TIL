@@ -244,10 +244,7 @@ def update(request, pk):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES, instance=article)
         ...
-
 ```
-
-
 
 ### upload_to 속성 심화 활용
 
@@ -256,22 +253,15 @@ def update(request, pk):
 
 2. 함수를 이용한 동적 경로 생성
 
-
-
 1. strftime()의 형식 코드를 사용
 
 ```python
 class Photo(models.Model):
     # 2100년 1월 1일에 업로드하면 '2100/01/01/' 폴더에 저장됨
     image = models.ImageField(blank=True, upload_to='%Y/%m/%d/')
-
 ```
 
-
-
-
-
-2.  함수를 이요한 동적 경로 생성
+2. 함수를 이요한 동적 경로 생성
    
    1. 더 복잡한 로직으로 경로를 만들고 싶을 때는, upload_to에 함수를 직접 전달할 수 있음
    
@@ -291,16 +281,9 @@ def articles_image_path(instance, filename):
 class Article(models.Model):
     user = ...
     image = models.ImageField(blank=True, upload_to=articles_image_path)
-
 ```
 
-
-
-
-
 ## EC2, S3, RDS를 활용한 웹 서비스 구축
-
-
 
 ### 📊 데이터 흐름도 요약
 
