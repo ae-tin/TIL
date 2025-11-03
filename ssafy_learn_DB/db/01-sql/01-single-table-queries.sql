@@ -40,5 +40,5 @@ SELECT Country FROM customers GROUP BY Country;
 SELECT Country, COUNT(*) FROM customers GROUP BY Country;
 SELECT Composer, AVG(Bytes) FROM tracks GROUP BY Composer ORDER BY AVG(Bytes) DESC;
 
-
-SELECT Composer, AVG(Milliseconds / 60000) AS avgMinute FROM tracks GROUP BY Composer HAVING avgMinute < 10
+SELECT Composer, AVG(Milliseconds / 60000) AS avgMinute FROM tracks WHERE avgMinute < 10 GROUP BY Composer;
+SELECT Composer, AVG(Milliseconds / 60000) AS avgMinute FROM tracks GROUP BY Composer HAVING avgMinute < 10;
