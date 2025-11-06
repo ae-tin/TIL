@@ -76,8 +76,6 @@
    
    - 각 레코드에서 서로 다른 테이블 간의 관계를 만드는 데 사용
 
-
-
 ## DBMS
 
 > 데이터베이스를 관리하는 소프트웨어 프로그램
@@ -122,8 +120,6 @@
 
 - 데이터는 기본 키 또는 외래 키를 통해 결합될 수 있는 여러 테이블에 걸쳐 구조화 됨
 
-
-
 ## SQL (Structure Query Language)
 
 > 테이블의 형태로 구조화 된 관계형 데이터베이스에게 요청을 질의
@@ -142,8 +138,6 @@
    
    - 세미콜론은 각 SQL Statements를 구분하는 방법(명령어의 마침표)
 
-
-
 ### 수행 목적에 따른 SQL Statements 4가지 유형
 
 | 유형                                   | 역할                     | SQL 키워드                                 |
@@ -152,8 +146,6 @@
 | **DQL** (Data Query Language)        | 데이터 검색                 | `SELECT`                                |
 | **DML** (Data Manipulation Language) | 데이터 조작 (추가, 수정, 삭제)    | `INSERT`, `UPDATE`, `DELETE`            |
 | **DCL** (Data Control Language)      | 데이터 및 작업에 대한 사용자 권한 제어 | `COMMIT`, `ROLLBACK`, `GRANT`, `REVOKE` |
-
-
 
 ## DQL (Data Query Language)
 
@@ -211,8 +203,6 @@
 > 
 > 1. 테이블에서 2. 조회하여 3. 정렬
 
-
-
 ### Filtering data 관련 Keywords
 
 - Clause - SQL 문장에서 특정 기능을 수행하도록 지정하는 문장 구성 요소
@@ -235,8 +225,6 @@
   
   - `Logical`
 
-
-
 #### DISTINCT
 
 > 조회 결과에서 중복된 레코드를 제거 **(Unique)**
@@ -250,8 +238,6 @@
   - `SELECT DISTINCT Country, City FROM customers ORDER BY Country, City;`
   
   > **Country, City 쌍을 하나의 값**으로 보고 중복된 값을 제거함!!
-
-
 
 #### WHERE
 
@@ -336,8 +322,6 @@
   - OR(||)
   
   - NOT(!)
-  
-  
 
 #### LIMIT
 
@@ -361,8 +345,6 @@
   
   - `SELECT TrackId, Name, Bytes FROM tracks ORDER BY Bytes DESC LIMIT 3, 4;` - LIMIT 4 OFFSET 3
 
-
-
 ### GROUP BY
 
 > 레코드를 그룹화하여 요약본 생성(거의 집계 함수와 함께 사용)
@@ -376,8 +358,6 @@
 #### Aggregation Functions - 집계 함수
 
 > 값에 대한 계산을 수행하고 단일한 값을 반환하는 함수 (SUM, AVG, MAX, MIN, COUNT)
-
-
 
 - Country 필드를 그룹화
   
@@ -407,17 +387,11 @@
   
   - `SELECT Composer, AVG(Milliseconds / 60000) AS avgMinute FROM tracks GROUP BY Composer HAVING avgMinute < 10;`
 
-
-
 ### HAVING
 
 > 집계 항목에 대한 세부 조건을 지정
 > 
 > 주로 GROUP BY와 함께 사용되며 GROUP BY가 없다면 WHERE 처럼 동작
-
-
-
-
 
 ### WHERE와 HAVING 비교 (1/2)
 
@@ -453,13 +427,9 @@
   
   - 그룹별 집계 결과에 조건을 걸어 특정 그룹만을 선택할 때 사용
 
-
-
 # ✅ SELECT statement 실행 순서
 
 FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
-
-
 
 # 🔢 실행 단계 설명
 

@@ -62,10 +62,6 @@
 
 - 단, 해당 FK필드 설정이 null=True가 설정되어야함
 
-
-
-
-
 ## 특정 게시글(Article)의 댓글(Comment) 정보 조회하기
 
 - QuerySet API의 .all() 사용하기 -> 불가
@@ -81,8 +77,6 @@
     - `comments = Comment.objects.filter(article=article)`
     
     - > 하지만 이건 좀 어색함
-
-
 
 ### 역참조
 

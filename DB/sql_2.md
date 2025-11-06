@@ -2,8 +2,6 @@
 
 > 여기서는 DDL(Data Definition Language, CREATE DROP ALTER)과 DML(Data Manipulation Language, INSERT UPDATE DELETE)
 
-
-
 ## Managing Tables
 
 ### Create Table
@@ -13,8 +11,6 @@
 - 각 필드에 적용할 데이터 타입 작성
 
 - 테이블 및 필드에 대한 제약조건(constraints) 작성
-
-
 
 - example table 생성 및 확인
   
@@ -52,8 +48,6 @@
   
   - 부동 소수점
 
-
-
 ### Constraints
 
 > 테이블의 필드에 적용되는 규칙 또는 제한 사항
@@ -74,8 +68,6 @@
   
   - 다른 테이블과의 외래 키 관계를 정의
 
-
-
 ### AUTOINCREMENT 특징
 
 - 필드의 자동 증가를 나타내는 특수한 키워드
@@ -86,15 +78,11 @@
 
 - 삭제된 값은 무시되며 재사용할 수 없게 됨
 
-
-
 ## Modifying table fields
 
 ### ALTER TABLE 역할
 
 > 테이블 및 필드 조작
-
-
 
 | 명령어                           | 역할        |
 | ----------------------------- | --------- |
@@ -121,8 +109,6 @@
 
 > SQLite 에서는 단일 문을 사용하여 한 번에 여러 Column을 추가하는 것을 지원하지 않음 --> 한 열씩 작성
 
-
-
 #### ALTER TABLE RENAME COLUMN
 
 > 필드명 변경
@@ -134,8 +120,6 @@
 - examples 테이블의 Address 필드의 이름을 PostCode로 변경
   
   - `ALTER TABLE examples RENAME COLUMN Address TO PostCode;`
-
-
 
 #### ALTER TABLE DROP COLUMN
 
@@ -149,8 +133,6 @@
   
   - `ALTER TABLE examples DROP COLUMN PostCode;`
 
-
-
 #### ALTER TABLE RENAME TO
 
 > 테이블 명 수정
@@ -162,8 +144,6 @@
 - examples 테이블 이름을 new_examples로 변경
   
   - `ALTER TABLE examples RENAME TO new_examples;`
-
-
 
 ### DELETE Table
 
@@ -177,13 +157,9 @@
   
   - `DROP TABLE new_examples;`
 
-
-
 ## Modifying Data
 
 > DML(Data Manipulation Language), 데이터 조작, `INSERT`,`UPDATE`, `DELETE`
-
-
 
 #### Insert Data
 
@@ -213,8 +189,6 @@
   
   - `INSERT INTO articles (title, content, createdAt) VALUES ('mytitle', 'mycontent, DATE());'`
 
-
-
 #### Update Data
 
 #### UPDATE
@@ -232,8 +206,6 @@
 - articles 테이블의 1번 레코드의 title 필드 값을 update title로 변경
   
   - `UPDATE articles SET title = 'update Title' WHERE id=1;`
-
-
 
 #### Delete Data
 
@@ -254,8 +226,6 @@
   - `DELETE FROM articles WHERE id = ("작성일이 오래된 순 상위 2개");`
   
   - `DELETE FROM articles WHERE id IN ( SELECT * FROM articles ORDER BY createdAt LIMIT 2);`
-
-
 
 ## Multi table queries
 
@@ -285,8 +255,6 @@
   
   - 이때 사용하는 것이 `JOIN`
 
-
-
 ### INNER JOIN
 
 > 두 테이블에서 값이 일치하는 레코드에 대해서만 결과를 반환
@@ -300,8 +268,6 @@
 - ON 키워드 이후 조인 조건을 작성
 
 - 조인 조건은 table_a, table_b 간의 레코드를 일치시키는 규칙을 지정
-
-
 
 #### LEFT JOIN
 
