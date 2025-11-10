@@ -27,7 +27,6 @@
   {% endif %}
 
   <hr>
-  {% comment %} 전체 게시글 출력 {% endcomment %}
   {% for article in articles %}
     <div>
       <p>작성자 : {{ article.user }}</p>
@@ -37,6 +36,14 @@
         글 제목: <a href="{% url "articles:detail" article.pk %}">{{ article.title }}</a>
       </p>
       <p>글 내용: {{ article.content }}</p>
+      <form action="{% url "articles:likes" article.pk %}" method="POST">
+        {% csrf_token %}
+        {% if request.user in article.like_users.all %}
+          <input type="submit" value="좋아요 취소">
+        {% else %}
+          <input type="submit" value="좋아요">
+        {% endif %}
+      </form>
     </div>
     <hr>
   {% endfor %}

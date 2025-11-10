@@ -16,7 +16,6 @@ def index(request):
 def detail(request, pk):
     article = Article.objects.get(pk=pk)
     comment_form = CommentForm()
-    # 특정 게시글에 작성된 모든 댓글 조회 (역참조)
     comments = article.comment_set.all()
     context = {
         'article': article,
@@ -24,7 +23,6 @@ def detail(request, pk):
         'comments': comments,
     }
     return render(request, 'articles/detail.html', context)
-
 
 
 @login_required
@@ -55,7 +53,6 @@ def delete(request, pk):
 @login_required
 def update(request, pk):
     article = Article.objects.get(pk=pk)
-    # 현재 수정을 요청하는 유저와 게시글의 작성자가 같은지 확인
     if request.user == article.user:
         if request.method == 'POST':
             form = ArticleForm(request.POST, instance=article)
@@ -74,20 +71,12 @@ def update(request, pk):
     return render(request, 'articles/update.html', context)
 
 
-# 댓글 작성 함수
 def comments_create(request, pk):
-    # 게시글 조회
     article = Article.objects.get(pk=pk)
-    # 댓글 데이터 받기
     comment_form = CommentForm(request.POST)
-    # 유효성 검사
     if comment_form.is_valid():
-        # commit False는 DB에 저장 요청을 잠시 보류하고,
-        # 대신 comment 인스턴스는 반환 해줌
         comment = comment_form.save(commit=False)
-        # 외래 키 데이터(어떤 게시글에 작성되는지)를 할당
         comment.article = article
-        # 외래 키 데이터(누가 작성하는지)를 할당
         comment.user = request.user
         comment.save()
         return redirect('articles:detail', article.pk)
@@ -98,13 +87,26 @@ def comments_create(request, pk):
     return render(request, 'articles/detail.html', context)
 
 
-# 댓글 삭제 함수
 def comments_delete(request, article_pk, comment_pk):
-    # 삭제할 댓글 조회
     comment = Comment.objects.get(pk=comment_pk)
-    # 댓글 삭제를 요청하는 유저가 현재 삭제되는 댓글의 작성자가 맞는지 확인
     if request.user == comment.user:
-        # 댓글 삭제
         comment.delete()
-    # 삭제 후 게시글 상세 페이지로 리다이렉트
     return redirect('articles:detail', article_pk)
+
+
+# 좋아요 처리 함수
+def likes(request, article_pk):
+    # 어떤 게시글에 좋아요를 누르는 건지 조회
+    article = Article.objects.get(pk=article_pk)
+
+    # Article - User 다대다 관계 생성/삭제
+    # 좋아요 생성/취소인지 확인
+    # 주체: 유저
+    # 유저가 해당 게시글에 좋아요를 누른 유저 목록에 포함이 되어있느냐 없느냐
+    if request.user in article.like_users.all():
+        article.like_users.remove(request.user)
+        # request.user.like_article.remove(article)
+    else:
+        article.like_users.add(request.user)
+        # request.user.like_article.add(article)
+    return redirect('articles:index')
