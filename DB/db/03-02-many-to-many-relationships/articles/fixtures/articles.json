@@ -1,0 +1,55 @@
+[
+{
+    "model": "articles.article",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "title": "user1 얏호",
+        "content": "ㅇ예야",
+        "created_at": "2025-11-11T00:30:18.089Z",
+        "updated_at": "2025-11-11T00:30:18.089Z",
+        "like_users": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "title": "user11111",
+        "content": "im ironman",
+        "created_at": "2025-11-11T00:30:31.306Z",
+        "updated_at": "2025-11-11T00:30:31.306Z",
+        "like_users": [
+            2
+        ]
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 3,
+    "fields": {
+        "user": 2,
+        "title": "imuser2",
+        "content": "useruser\r\nuseruser2",
+        "created_at": "2025-11-11T00:30:57.398Z",
+        "updated_at": "2025-11-11T00:30:57.398Z",
+        "like_users": []
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 4,
+    "fields": {
+        "user": 2,
+        "title": "좋댓구알",
+        "content": "user2좋댓구알부탁",
+        "created_at": "2025-11-11T00:31:19.940Z",
+        "updated_at": "2025-11-11T00:31:19.940Z",
+        "like_users": []
+    }
+}
+]
