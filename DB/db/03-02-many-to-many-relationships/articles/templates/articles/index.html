@@ -7,6 +7,7 @@
 </head>
 <body>
   <h3>Hello, {{ user.username }}</h3>
+  {% comment %} <h3>Hello, {{ request.user.username }}</h3> {% endcomment %}
 
   <h1>메인 페이지</h1>
 
@@ -30,10 +31,9 @@
   <hr>
   {% for article in articles %}
     <div>
-      <p>작성자 : 
-        <a href="{% url "accounts:profile" article.user.username%}">
-          {{ article.user }}
-        </a>
+      <p>
+        작성자 :
+        <a href="{% url "accounts:profile" article.user.username %}">{{ article.user }}</a>
       </p>
       {% comment %} <p>작성자 : {{ article.user.username }}</p> {% endcomment %}
       <p>글 번호: {{ article.pk }}</p>

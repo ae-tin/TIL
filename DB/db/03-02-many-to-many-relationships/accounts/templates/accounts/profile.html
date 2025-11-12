@@ -6,43 +6,43 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>{{person.username}}님의 프로필</h1>
+  <h1>{{ person.username }}님의 프로필</h1>
   <div>
-    팔로워 : {{person.followers.all|length}} / 팔로우 : {{person.followings.all|length}}
-
+    팔로워 : {{ person.followers.all|length }} / 팔로우 : {{ person.followings.all|length }}
   </div>
 
   {% if request.user != person %}
-  <form action="{% url "accounts:follow" person.pk%}" method="POST">
-    {% csrf_token %}
-    {% if request.user in person.followers.all %}
-      <input type="submit" value="언팔로우">
-    {% else %}
-      <input type="submit" value="팔로우">
-    {% endif %}
-  </form>
+    <form action="{% url "accounts:follow" person.pk %}" method="POST">
+      {% csrf_token %}
+      {% if request.user in person.followers.all %}
+        <input type="submit" value='언팔로우'>
+      {% else %}
+        <input type="submit" value='팔로우'>
+      {% endif %}
+    </form>
   {% endif %}
   <hr>
 
-  {% comment "게시글" %}{% endcomment %}
-  <h2>{{person.username}}님이 작성한 게시글</h2>
+  {% comment %} 게시글 {% endcomment %}
+  <h2>{{ person.username }} 작성한 게시글</h2>
   {% for article in person.article_set.all %}
-  <div>{{article.title}}</div>
+    <div>{{ article.title }}</div>
   {% endfor %}
   <hr>
 
-  {% comment "좋아요 한 게시글" %}{% endcomment %}
-  <h2>{{person.username}}님이 작성한 댓글</h2>
+  {% comment %} 댓글 {% endcomment %}
+  <h2>{{ person.username }} 작성한 댓글</h2>
   {% for comment in person.comment_set.all %}
-  <div>{{comment.content}}</div>
+    <div>{{ comment.content }}</div>
   {% endfor %}
   <hr>
 
-  <h2>{{person.username}}님이 좋아요 한 게시글</h2>
+  {% comment %} 좋아요 한 게시글 {% endcomment %}
+  <h2>{{ person.username }} 좋아요 한 게시글</h2>
   {% for article in person.like_articles.all %}
-  <div>{{article.content}}</div>
+    <div>{{ article.title }}</div>
   {% endfor %}
-  <hr>
+
 
 </body>
 </html>

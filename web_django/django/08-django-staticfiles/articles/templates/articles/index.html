@@ -1,16 +1,18 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href=" {% static "stylesheets/style.css" %}">
+  <link rel="stylesheet" href="{% static "stylesheets/style.css" %}">
 </head>
 <body>
-  {% comment "" %} 추가 static 경로 {% endcomment %}
+  {% comment %} 추가 static 경로 {% endcomment %}
   <img src="{% static "python.png" %}" alt="sample">
-  {% comment "" %} 기본 static 경로 {% endcomment %}
+
+  {% comment %} 기본 static 경로 {% endcomment %}
   <img src="{% static "images/python.png" %}" alt="sample">
   <h1>메인 페이지</h1>
   <a href="{% url "articles:create" %}">CREATE</a>

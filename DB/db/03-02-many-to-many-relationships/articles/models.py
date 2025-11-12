@@ -1,6 +1,6 @@
 from django.db import models
-from accounts.models import User
-from django.contrib.auth import get_user_model
+# from accounts.models import User
+# from django.contrib.auth import get_user_model
 from django.conf import settings
 
 

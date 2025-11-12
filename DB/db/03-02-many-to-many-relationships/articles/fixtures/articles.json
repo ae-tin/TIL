@@ -4,12 +4,11 @@
     "pk": 1,
     "fields": {
         "user": 1,
-        "title": "user1 얏호",
-        "content": "ㅇ예야",
-        "created_at": "2025-11-11T00:30:18.089Z",
-        "updated_at": "2025-11-11T00:30:18.089Z",
+        "title": "asdasdasd",
+        "content": "asdasdasdasd",
+        "created_at": "2025-11-11T00:30:05.979Z",
+        "updated_at": "2025-11-11T00:30:05.979Z",
         "like_users": [
-            1,
             2
         ]
     }
@@ -19,12 +18,12 @@
     "pk": 2,
     "fields": {
         "user": 1,
-        "title": "user11111",
-        "content": "im ironman",
-        "created_at": "2025-11-11T00:30:31.306Z",
-        "updated_at": "2025-11-11T00:30:31.306Z",
+        "title": "ㅁㄴㅇㅁㄴㅇ3235",
+        "content": "허ㅜㄹ홍ㅅ3656ㅈㄷㄱㄷ",
+        "created_at": "2025-11-11T00:30:23.916Z",
+        "updated_at": "2025-11-11T00:30:23.916Z",
         "like_users": [
-            2
+            1
         ]
     }
 },
@@ -33,22 +32,10 @@
     "pk": 3,
     "fields": {
         "user": 2,
-        "title": "imuser2",
-        "content": "useruser\r\nuseruser2",
-        "created_at": "2025-11-11T00:30:57.398Z",
-        "updated_at": "2025-11-11T00:30:57.398Z",
-        "like_users": []
-    }
-},
-{
-    "model": "articles.article",
-    "pk": 4,
-    "fields": {
-        "user": 2,
-        "title": "좋댓구알",
-        "content": "user2좋댓구알부탁",
-        "created_at": "2025-11-11T00:31:19.940Z",
-        "updated_at": "2025-11-11T00:31:19.940Z",
+        "title": "gsfgefg521",
+        "content": "rqwerfadfasf",
+        "created_at": "2025-11-11T00:30:57.181Z",
+        "updated_at": "2025-11-11T00:30:57.181Z",
         "like_users": []
     }
 }

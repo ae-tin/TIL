@@ -5,7 +5,7 @@ from django.db.models import Count
 
 # Create your views here.
 def index_1(request):
-    #articles = Article.objects.order_by('-pk')
+    # articles = Article.objects.order_by('-pk')
     articles = Article.objects.annotate(comment_count=Count('comment')).order_by('-pk')
     context = {
         'articles': articles,
@@ -14,7 +14,7 @@ def index_1(request):
 
 
 def index_2(request):
-    #articles = Article.objects.order_by('-pk')
+    # articles = Article.objects.order_by('-pk')
     articles = Article.objects.select_related('user').order_by('-pk')
     context = {
         'articles': articles,
@@ -23,7 +23,7 @@ def index_2(request):
 
 
 def index_3(request):
-    #articles = Article.objects.order_by('-pk')
+    # articles = Article.objects.order_by('-pk')
     articles = Article.objects.prefetch_related('comment_set').order_by('-pk')
     context = {
         'articles': articles,
@@ -35,12 +35,12 @@ from django.db.models import Prefetch
 
 
 def index_4(request):
-    #articles = Article.objects.order_by('-pk')
-    articles = Article.objects.prefetch_related('comment_set').order_by('-pk')
+    articles = Article.objects.order_by('-pk')
+    # articles = Article.objects.prefetch_related('comment_set').order_by('-pk')
     
     articles = Article.objects.prefetch_related(
-         Prefetch('comment_set', queryset=Comment.objects.select_related('user'))
-     ).order_by('-pk')
+        Prefetch('comment_set', queryset=Comment.objects.select_related('user'))
+    ).order_by('-pk')
 
     context = {
         'articles': articles,
