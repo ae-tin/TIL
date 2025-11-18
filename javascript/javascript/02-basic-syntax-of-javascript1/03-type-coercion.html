@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+console.log(Boolean(0));  // f
+console.log(Boolean(10)); // t
+console.log(Boolean(NaN)); // f
+
+console.log(Boolean(""));  // f
+console.log(Boolean("hello")); // t 
+console.log(Boolean("0")); // t
+
+console.log(Boolean(null));  // f
+console.log(Boolean(undefined)); //  
+console.log(Boolean([])); // t
+console.log(Boolean({}));  // t
+
+  </script>
+</body>
+
+</html>

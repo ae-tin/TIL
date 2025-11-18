@@ -8,8 +8,6 @@
 
 - 예약어 사용 불가 for, if, function
 
-
-
 ### 식별자 Naming Convention
 
 - 카멜 케이스(camelCase) - 낙타처럼 띄어쓰기해야할 때 대문자를 작성
@@ -24,8 +22,6 @@
   
   - 상수(constants)에 사용
 
-
-
 ## 변수 선언 키워드 3가지
 
 1. let
@@ -39,8 +35,6 @@
 3. ~~var~~ - 지금 거의 사용하지 않을거임
    
    - 재선언/재할당이 가능하고, 현재는 호이스팅(Hoisting) 문제로 사용을 권장하지 않음
-
-
 
 #### let
 
@@ -58,8 +52,6 @@ number = 20 // 재할당 가능
 let number = 10
 let number = 20 // 재선언 불가능 
 ```
-
-
 
 ### const
 
@@ -79,17 +71,11 @@ const number 20 // 재선언 불가능
 const number // const declarations must be initialized
 ```
 
-
-
 ### 블록 스코프(block scope)
 
 - if, for 함수 등의 중괄호 내부를 가리킴
 
 - 블록 스코프를 가지는 변수는 블록 바깥에서 접근 불가능
-
-
-
-
 
 ### 어떤 변수 선언 키워드를 사용해야 할까?
 
@@ -115,23 +101,17 @@ const number // const declarations must be initialized
   
   - 코드의 유연성을 확보하면서도 const의 장점을 최대한 활용할 수 있음
 
-
-
 ## DOM(The Document Object Model)
 
 > 웹 페이지(Document)를 구조화된 객체로 제공하여 프로그래밍 언어가 페이지 구조에 접근할 수 있는 방법을 제공
 > 
 > > 문서 구조, 스타일, 내용 등을 변경할 수 있도록 함
 
-
-
 ### DOM API
 
 - 다른 프로그래밍 언어가 웹 페이지에 접근 및 조작 할 수 있도록, 페이지 요소들을 객체 형태로 제공하며 관련된 메서드도 함께 제공
 
 - HTML  구조와 내용을 조작하는 명령어 모음
-
-
 
 ### Document 객체
 
@@ -143,8 +123,6 @@ const number // const declarations must be initialized
 
 - 모두 document 객체의 하위 객체로 구성됨
 
-
-
 ### DOM Tree
 
 - HTML 태그를 나타내는 elements의 node는 문서의 구조를 결정
@@ -152,8 +130,6 @@ const number // const declarations must be initialized
 - 이들은 다시 자식 node를 가질 수 있음(ex. document.body)
   
   - 객체 간 상속 구조가 존재
-
-
 
 ### DOM 핵심
 
@@ -164,8 +140,6 @@ const number // const declarations must be initialized
 - DOM 조작은 웹페이지에 실시간으로 반영되어, 사용자와 상호작용하는 동적 페이지를 만든다
 
 - 사용자의 클릭이나 키보드 입력같은 이벤트를 감지하고, 이에 반응하는 상호작용을 만드는 기반이 된다
-
-
 
 ### DOM 선택
 
@@ -178,10 +152,6 @@ const number // const declarations must be initialized
 1. 조작하고자하는 요소를 선택 또는 탐색
 
 2. 선택된 요소의 콘텐츠 또는 속성을 조작
-
-
-
-
 
 ### 선택 메서드
 
@@ -201,10 +171,6 @@ const number // const declarations must be initialized
 
 - 제공한 선택자를 만족하는 NodeList를 반환
 
-
-
-
-
 ## DOM 조작
 
 1. 속성 조작
@@ -219,8 +185,6 @@ const number // const declarations must be initialized
 
 4. 스타일 조작
 
-
-
 ### 속성 조작
 
 1. 클래스 속성 조작
@@ -230,8 +194,6 @@ const number // const declarations must be initialized
 2. 일반 속성 조작
    
    - id, href 등 요소의 모든 HTML 속성 값을 직접 설정/조회
-
-
 
 #### 클래스 속성 조작
 
@@ -255,8 +217,6 @@ const number // const declarations must be initialized
      
      - 클래스가 존재한다면 제거하고 false를 반환(존재하지 않으면 클래스를 추가하고 true를 반환)
 
-
-
 #### 일반 속성 조작(웬만하면 클래스 속성 조작으로 쓰기)
 
 2. 일반 속성 조작 메서드
@@ -275,8 +235,6 @@ const number // const declarations must be initialized
      
      - 요소에서 지정된 이름을 가진 속성 제거
 
-
-
 ### HTML 콘텐츠 조작
 
 #### `textContent` property
@@ -284,8 +242,6 @@ const number // const declarations must be initialized
 > 요소의 텍스트 콘텐츠를 표현
 > 
 > HTML 태그를 완전히 제거하고 순수한 텍스트 데이터만 얻고 싶을 때 가장 유용
-
-
 
 ### DOM 요소 조작 메서드
 
@@ -307,10 +263,6 @@ const number // const declarations must be initialized
 > 
 > `removeChild`로 제거된 노드는 메모리에 남아있어, 변수에 담아두면 언제든지 가능함
 
-
-
-
-
 ##### `style` property
 
 > 해당 요소의 모든 style 속성 목록을 포함하는 속성
@@ -318,10 +270,6 @@ const number // const declarations must be initialized
 - style property는 HTML 태그에 style='...' 속성을 직접 추가/수정하는 것과 같습니다.
 
 - 여러 스타일 변경은 가급적 클래스(class)를 활용하는 것을 의무로 하는 것이 좋음
-
-
-
-
 
 ## 용어 정리
 
@@ -345,10 +293,6 @@ DOM 트리의 각 부분은 **Node**라는 객체로 표현된다.
   → HTML 요소의 속성을 나타내는 노드  
   (예: `class="box"`)
 
-
-
-
-
 ## 📌 NodeList란?
 
 - DOM 메서드를 사용해 선택된 **Node들의 목록**
@@ -369,10 +313,6 @@ DOM 트리의 각 부분은 **Node**라는 객체로 표현된다.
   
   → 즉, DOM이 나중에 변경되더라도  
   **이미 선택된 NodeList 값은 그대로 유지됨**
-
-
-
-
 
 ## 📌 Element란?
 
@@ -401,19 +341,11 @@ DOM 트리의 각 부분은 **Node**라는 객체로 표현된다.
 > ✘ 하지만 **모든 Node가 Element인 것은 아니다.**  
 > (예: Text Node, Attribute Node는 Element가 아님)
 
-
-
-
-
-
-
 # **Parsing**
 
 ### 브라우저가 문자열을 해석하여 DOM Tree로 만드는 과정
 
 (구문 분석, 해석)
-
-
 
 # **세미콜론 (semicolon)**
 
@@ -425,14 +357,6 @@ DOM 트리의 각 부분은 **Node**라는 객체로 표현된다.
 - 자바스크립트의 창시자 Brendan Eich 또한  
   “세미콜론은 **선택적**이어야 한다”는 입장을 가지고 있으며,  
   세미콜론을 강제하지 않는 스타일을 선호함
-
-
-
-
-
-
-
-
 
 # **var**
 
@@ -457,21 +381,11 @@ DOM 트리의 각 부분은 **Node**라는 객체로 표현된다.
 
 - **변수 선언 시 var / const / let 중 아무 것도 쓰지 않으면 → 자동으로 var로 선언됨**
 
-
-
-
-
-
-
 # **함수 스코프 (function scope)**
 
 ### 함수의 중괄호 내부를 가리키며,
 
 ### 함수 스코프를 가진 변수는 **함수 바깥에서 접근 불가**하다
-
-
-
-
 
 ## 📌 hoisting이란?
 
@@ -481,8 +395,6 @@ DOM 트리의 각 부분은 **Node**라는 객체로 표현된다.
   → 실행 시점에는 선언부가 위로 끌어올려짐
 
 - 할당 전까지는 **값이 `undefined`**
-
-
 
 ```javascript
 console.log(name)  // undefined
@@ -496,5 +408,4 @@ var name = '홍길동'   // 선언 및 할당
 var name     // 선언
 console.log(name)  // undefined
 name = '홍길동'     // 할당
-
 ```
