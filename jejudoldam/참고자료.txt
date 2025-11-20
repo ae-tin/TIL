@@ -1,0 +1,16 @@
+제주여행 공유 + 제주여행 루트 추천 플랫폼
+
+follower 좋은데?!
+메인 페이지에 피드 처럼 공유 게시물 등록
+아니면 여행지 추천
+
+# 여행지 프로젝트
+https://github.com/olrlobt/ssafy_EnjoyTrip
+
+# 구획 나누기 코드
+https://olrlobt.tistory.com/67
+
+
+- doldam 참고
+
+- https://github.com/Ssuhyeong/Travel_GO
