@@ -1,45 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-</head>
+  <body>
+    <h1>로또 추천 번호</h1>
+    <button id="btn">행운 번호 받기</button>
+    <div></div>
 
-<body>
-  <h1>로또 추천 번호</h1>
-  <button id="btn">행운 번호 받기</button>
-  <div></div>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script>  
+      // 참고
+      // _.range(1, 46): 1부터 45까지의 배열 생성
+      // _.sampleSize(numbers, 6): 45개의 리스트에서 6개 번호 추출 
 
-  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-  <script>
-    // 참고
-    // _.range(1, 46): 1부터 45까지의 배열 생성
-    // _.sampleSize(numbers, 6): 45개의 리스트에서 6개 번호 추출
+      // 1. 필요한 요소 선택
 
-    // 1. 필요한 요소 선택
-    const btnTag = document.querySelector("#btn")
-    const divTag = document.querySelector("div")
-    // 2. 로또 번호를 화면에 출력하는 함수 (이벤트 핸들러)
-    const getLotto = function (event) {
-      const numbers = _.range(1, 46)
-      const pickNumbers = _.sampleSize(numbers, 6)
-      console.log(pickNumbers)
-      const ulTag = document.createElement("ul")
-      // 6개 숫자를 하나씩 순회
-      pickNumbers.forEach((number) => {
-        const liTag = document.createElement("li")
-        liTag.textContent = number
-        ulTag.appendChild(liTag)
-      })
-      divTag.appendChild(ulTag)
-    }
+      // 2. 로또 번호를 화면에 출력하는 함수 (이벤트 핸들러)
 
-
-    // 3. 버튼 요소에 이벤트 핸들러를 등록
-    btnTag.addEventListener("click", getLotto)
-  </script>
-</body>
-
+      // 3. 버튼 요소에 이벤트 핸들러를 등록
+    </script>
+  </body>
 </html>

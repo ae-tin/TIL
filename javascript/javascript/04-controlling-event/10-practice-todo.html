@@ -16,33 +16,6 @@
 
   <script>
     // 목표: Input창에 입력한 후 '+'버튼 클릭 시, 실시간으로 리스트에 출력하기
-    // 1. 요소를 선택하는것
-    const inputTag = document.querySelector(".input-text")
-    const buttonTag = document.querySelector("#btn")
-    const ulTag = document.querySelector("ul")
-
-    // 2. 핸들러 작성
-    const addTodo = function (event) {
-      // 사용자가 입력한 데이터를 가져온다
-      const inputData = inputTag.value
-      // 빈 input인지 검사
-      if (inputData.trim()) {
-
-        const liTag = document.createElement("li")
-        liTag.textContent = inputData
-
-        //ul tag에 자식으로 추가
-        ulTag.appendChild(liTag)
-
-        inputTag.value = ''
-      }
-      else {
-        alert('입력 오네가이')
-      }
-    }
-    // 3. 
-    buttonTag.addEventListener("click", addTodo)
-
     // 추가기능: 빈 문자열이 입력될 경우, 경고 대화상자를 띄우기 
   </script>
 </body>

@@ -22,20 +22,9 @@
   <script>
     // 목표: 입력 값을 실시간으로 출력하고, 클릭 버튼을 클릭 시 출력 값의 CSS를 변경하기 
     // 1. 입력 이벤트 작성하기
-    const inputTag = document.querySelector("#text-input")
-    const h1Tag = document.querySelector("h1")
 
-    const inputHandler = function (event) {
-      h1Tag.textContent = event.currentTarget.value
-    }
-    inputTag.addEventListener("input", inputHandler)
     // 2. 클릭 버튼 이벤트 작성하기
-    const btn = document.querySelector("#btn")
-    const clickHandler = function (event) {
-      // h1Tag.classList.add("blue")
-      h1Tag.classList.toggle('blue')
-    }
-    btn.addEventListener("click", clickHandler)
+
   </script>
 </body>
 
