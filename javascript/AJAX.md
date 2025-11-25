@@ -312,3 +312,110 @@ work1()
   - 예시. 비동기 결제 처리
 
 - 하나의 작업이 완전히 끝난 것을 확인 한 후 다음 작업을 순차적으로 실행해야 함
+
+
+
+
+
+# AJAX와 서버
+
+### Ajax를 활용한 클라이언트 서버 간 동작
+
+- XHR 객체 생성 및 요성 -> 응답 데이터 생성 -> Json 데이터 응답 -> Promise 객체를 활용해 DOM 조작(웹페이지 일부분 만을 다시 로딩)
+
+- JS -> single thread -> 어떻게 비동기 처리를 할까?
+  
+  - call stack : 함수 호출이 쌓이고 코드가 동작하는 영역
+  
+  - Web API :  비동기 작업이 처리되는 곳(브라우저가 담당)
+  
+  - task queue : 처리가 끝난 작업들이 대기하는 곳
+  
+  - Event loop : call stack 비어있는지를 확인하고 비어있으면 task queue에 있는 작업을 옮겨서 마무리한다
+
+- axios : Promise 기반의 HTTP 요청을 처리하는 js 라이브러리
+
+- 비동기 함수를 동기적으로 처리하고 싶을 때가 있다.
+  
+  - 비동기 콜백 -> 콜백지옥
+  
+  - Promise 객체 -> 비동기 작업 결과를 반환(then, catch)
+  
+  - async / await를 이용해서 더욱 간결하게 사용이 가능해졌다
+
+
+
+## 비동기 팔로우 구현
+
+> 비동기 : 기다리지 않고, 다른 작업을 실행
+
+- 사전준비
+  
+  - M:N 관계 모델링까지 진행된 Django 프로젝트 준비
+
+
+
+- 프로필 페이지에 axios CDN 작성
+
+```javascript
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+</script>
+</body>
+</html>  
+
+
+```
+
+
+
+- form 요소 선택을 위해 id 속성 지정 및 선택
+
+- action과 method 속성은 삭제
+  
+  - 요청은 axios로 대체
+
+```javascript
+<!-- accounts/profile.html -->
+<form id="follow-form">
+  ...
+</form>
+ 
+<!-- accounts/profile.html -->
+
+const formTag = document.querySelector('#follow-form')   
+ 
+```
+
+
+
+
+
+• form 요소에 이벤트 핸들러 할당
+
+• submit 이벤트의 기본 동작 취소하기
+
+```javascript
+<!-- accounts/profile.html -->
+formTag.addEventListener('submit', function (event) {
+ event.preventDefault()
+})  
+```
+
+
+
+### data-* 속성
+
+- html 표준 문법
+
+- 사용자 지정 데이터 속성을 만들어,  html과 dom 사이에서 임의의 데이터를 교환하는 방법
+
+- 모든 사용자 지정 데이터는 js에서 dataset속성을 통해 접근
+
+- 주의사항
+  
+  - 대소문자 여부에 상관없이 xml 문자로 시작 불가
+  
+  - 세미콜론 포함 불가
+  
+  - 대문자 포함 불가
