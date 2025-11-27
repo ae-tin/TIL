@@ -10,7 +10,6 @@
 <body>
   <div id="app">
     <h1>{{ message }}</h1>
-    <h1>{{ message.split('').reverse().join(',') }}</h1>
     <button v-on:click="count++">
       Count is: {{ count }}
     </button>
@@ -23,8 +22,6 @@
     const app = createApp({
       setup() {
         const message = ref('Hello vue!')
-        console.log(message)// ref 객체
-        console.log(message.value)
         const count = ref(0)
 
         return {

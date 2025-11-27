@@ -254,10 +254,7 @@
 
   app.mount('#app')
 </script>
-   
 ```
-
-
 
 ## ref()
 
@@ -283,10 +280,7 @@ const app = createApp({
     console.log(message.value)    // Hello vue!
   }
 })
-  
 ```
-
-
 
 - 템플릿의 참조에 접근하려면 setup 함수에서 선언 및 반환 필요
 
@@ -315,19 +309,13 @@ const app = createApp({
 <div id="app">
   <h1>{{ message }}</h1>
 </div>
-   
-
-  
 ```
 
 - 콘텐츠는 식별자나 경로에만 국한되지 않으며 유효한 js표현식을 사용할 수 있음
 
 ```html
 <h1> {{ message.split('').reverse().join('') }}</h1>
-  
 ```
-
-
 
 ### Event Listeners in Vue
 
@@ -343,7 +331,6 @@ const app = createApp({
   <p>{{ number }}</p>
   <p>{{ number }}</p>
 </div>
-  
 ```
 
 ```js
@@ -362,10 +349,7 @@ const app = createApp({
     }
   }
 })
-  
 ```
-
-
 
 ### ref 객체가 필요한 이유
 
@@ -378,8 +362,6 @@ const app = createApp({
 - 이를 위해서 참조 자료형의 객체 타입으로 구현한 것
   
   - javascript 에서는 일반 변수의 접근 또는 변형을 감지할 방법이 없기 때문
-
-
 
 ### 반응형 변수 vs 일반 변수
 
@@ -401,7 +383,6 @@ const app = createApp({
     }
   }
 })
-  
 ```
 
 ```html
@@ -411,12 +392,7 @@ const app = createApp({
   <p>일반 변수: {{ normalValue }}</p>
   <button v-on:click="updateValues">값 업데이트</button>
 </div>
-
 ```
-
-
-
-
 
 ### 템플릿에서의 unwrap 시 주의사항
 
@@ -424,12 +400,10 @@ const app = createApp({
 
 ```js
 const object = { id: ref(0) }
-  
 ```
 
 ```html
 {{ object.id + 1 }}   // [object Object]1
-  
 ```
 
 - [object object]이 출력되는 이유
@@ -447,8 +421,6 @@ const object = { id: ref(0) }
 `const {id} = object`
 
 `{{ id + 1 }} // 1`
-
-
 
 - 단 ref가 '{{}}'의 최종 평가 값인 경우는 unwrap 가능
 

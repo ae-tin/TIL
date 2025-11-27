@@ -1,3 +1,4 @@
+<!-- form-input-bindings.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,14 +6,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+  </style>
 </head>
 
 <body>
   <div id="app">
-    <button v-on:click="increment">버튼</button>
-    <p>{{ number }}</p>
-    <p>{{ number }}</p>
-    <p>{{ number }}</p>
+    <p>{{ inputText1 }}</p>
+    <input :value="inputText1" @input="onInput">
+
+    <p>{{ inputText2 }}</p>
+    <input v-model="inputText2">
+
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -21,14 +26,16 @@
 
     const app = createApp({
       setup() {
-        const number = ref(0)
-        const increment = function () {
-          // console.log(number) // ref 객체
-          number.value++
+        const inputText1 = ref('')
+        const inputText2 = ref('')
+        const onInput = function (event) {
+          inputText1.value = event.currentTarget.value
         }
+
         return {
-          number,
-          increment
+          inputText1,
+          onInput,
+          inputText2
         }
       }
     })
