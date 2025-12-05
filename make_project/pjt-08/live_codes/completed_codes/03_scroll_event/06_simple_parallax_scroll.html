@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>패럴랙스 스크롤</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #87ceeb;
+      height: 600vh;
+    }
+
+    /* 패럴랙스 레이어들 */
+    .parallax-layer {
+      position: fixed;
+      /* top: 0;
+      left: 0; */
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    /* 산 레이어 (가장 느리게) */
+    .layer-mountain {
+      z-index: 1;
+    }
+
+    /* 구름 레이어 */
+    .layer-cloud {
+      z-index: 2;
+    }
+
+    /* 나뭇가지 레이어 */
+    .layer-branch {
+      z-index: 3;
+      justify-content: flex-start;
+      padding-bottom: 300px;
+    }
+
+    /* 새 레이어 (가장 빠르게) */
+    .layer-bird {
+      z-index: 4;
+      padding-bottom: 300px;
+    }
+
+    /* 배경 - 산 (거대한 크기, 초록색) */
+    .layer-mountain .shape {
+      border-left: 450px solid transparent;
+      border-right: 450px solid transparent;
+      border-bottom: 800px solid #2d7a2d;
+    }
+    
+    /* 구름 (이모지) */
+    .layer-cloud .shape {
+      font-size: 180px;
+      padding-bottom: 500px;
+    }
+    
+    /* 나무 가지 (왼쪽으로 긴 형태) */
+    .layer-branch .shape {
+      width: 80%;
+      height: 25px;
+      background: rgba(101, 67, 33, 0.8);
+      border-radius: 12px;
+    }
+
+    /* 새 */
+    .layer-bird .shape {
+      font-size: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 패럴랙스 레이어들 -->
+  <div class="parallax-layer layer-mountain">
+    <div class="shape"></div>
+  </div>
+
+  <div class="parallax-layer layer-cloud">
+    <div class="shape">☁️</div>
+  </div>
+
+  <div class="parallax-layer layer-branch">
+    <div class="shape"></div>
+  </div>
+
+  <div class="parallax-layer layer-bird">
+    <div class="shape">🦅</div>
+  </div>
+
+  <script>
+    const layerMountain = document.querySelector('.layer-mountain')
+    const layerCloud = document.querySelector('.layer-cloud')
+    const layerBranch = document.querySelector('.layer-branch')
+    const layerBird = document.querySelector('.layer-bird')
+
+    // 각 레이어의 속도 설정
+    const speeds = {
+      mountain: 0.05,
+      cloud: 0.1,
+      branch: 0.1,
+      bird: 0.4
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY  // 화면이 얼마나 내려왔는지 위치 확인
+
+      // 각 레이어를 다른 속도로 이동
+      layerMountain.style.transform = `translate(${scrolled * speeds.mountain * 1.5}px, ${scrolled * speeds.mountain}px)`
+      layerCloud.style.transform = `translate(${scrolled * speeds.cloud}px)`
+      // 나뭇가지는 조금씩 아래로 이동
+      layerBranch.style.transform = `translateY(${scrolled * speeds.branch}px)`
+      // 새는 좌상단 대각선으로 이동 (위로 + 왼쪽으로)  translate(x, y) 활용
+      layerBird.style.transform = `translate(${-scrolled * speeds.bird * 0.1}px, ${-scrolled * speeds.bird * 0.05}px)`
+    })
+  </script>
+</body>
+</html>
