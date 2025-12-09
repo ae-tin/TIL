@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { useCounterStore } from '@/stores/counter'
+import { useCounterStore } from '@/stores/todo'
 import { ref, watch } from 'vue'
 
 // 체크박스로 하려면

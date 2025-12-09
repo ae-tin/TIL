@@ -10,7 +10,7 @@
 <script setup>
 import TodoForm from '@/components/TodoForm.vue'
 import TodoList from '@/components/TodoList.vue'
-import { useCounterStore } from '@/stores/counter'
+import { useCounterStore } from '@/stores/todo'
 
 const store = useCounterStore()
 

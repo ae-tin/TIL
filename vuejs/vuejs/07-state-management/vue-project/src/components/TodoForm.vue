@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { useCounterStore } from '@/stores/counter'
+import { useCounterStore } from '@/stores/todo'
 import { ref } from 'vue'
 
 const store = useCounterStore()
